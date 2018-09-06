@@ -1,0 +1,7 @@
+dpic/*.o
+dpic/dpic
+dpic/*.bc
+dpic/*.js
+*~
+dev/
+

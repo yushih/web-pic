@@ -657,7 +657,11 @@ mstring outfnam;                        /* name of current output file */
 boolean inputeof;                                 /* end-of-input flag */
 boolean forbufend;                                /* end of for buffer */
 int argct;                             /* argument counter for options */
+#ifdef __EMSCRIPTEN__
+int drawmode = SVG;
+#else
 int drawmode;                                     /* output conversion */
+#endif
 boolean safemode;                               /* disable sh and copy */
 /*D oflag: integer; D*/
 /* debug level and open logfile flag */
@@ -19298,7 +19302,7 @@ optionchar(Char *fn)
   }
 }
 
-
+#ifndef __EMSCRIPTEN__
 /* Set safe mode and one of 12 output formats.
    The version date is set during
    preprocessing */
@@ -19394,23 +19398,33 @@ getoptions(void)
       argct++;
   }
 }  /* getoptions */
-
+#endif 
 
 int main(int argc, Char *argv[])
-{ P_argc = argc; P_argv = argv; __top_jb = NULL;
+{ 
+#ifdef  __EMSCRIPTEN__
+  P_argc = 0; P_argv = NULL;
+#else
+  P_argc = argc; P_argv = argv;
+#endif
+   __top_jb = NULL;
   redirect = NULL;
   copyin = NULL;
   errout = NULL;
   output = NULL;
   input = NULL;
   openerror();
+#ifndef  __EMSCRIPTEN__
   drawmode = TeX;
+#endif
 #ifdef SAFE_MODE
   safemode = true;
 #else
   safemode = false;
 #endif
+#ifndef  __EMSCRIPTEN__
   getoptions();
+#endif
   openfiles();
   inputeof = false;
   attstack = Malloc(sizeof(attstacktype));
@@ -19436,7 +19450,6 @@ int main(int argc, Char *argv[])
   if (errcount==0) exit(EXIT_SUCCESS); 
          else exit(EXIT_FAILURE);
 }  /* dpic */
-
 
 
 /* End. */

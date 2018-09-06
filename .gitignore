@@ -1,7 +1,7 @@
 dpic/*.o
 dpic/dpic
 dpic/*.bc
-dpic/*.js
+dpic/*.js.mem
 *~
 dev/
 

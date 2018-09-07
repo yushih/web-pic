@@ -148,6 +148,7 @@ module.exports = {
           {
             test: /\.(js|jsx|mjs)$/,
             include: paths.appSrc,
+            exclude: /dpic\.js$/,
             loader: require.resolve('babel-loader'),
             options: {
               

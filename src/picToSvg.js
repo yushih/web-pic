@@ -54,7 +54,8 @@ function picToSvg (input) {
 
     io.setInput(input);
 
-    startDpic(io);
+    window.startDpic(io);
     return io.getOutput();
 }
 
+export default picToSvg;

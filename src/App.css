@@ -72,3 +72,14 @@
 .code textarea {
     flex-grow: 1;
 }
+
+.btn-render {
+    float: right;
+}
+
+.graph-pane {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: 100%;
+}

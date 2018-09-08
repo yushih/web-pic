@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import SplitPane from 'react-split-pane';
 import introHtml from './intro.html';
-import picToSvg from './picToSvg';
+//import picToSvg from './picToSvg';
+import picToSvg, {IN,OUT} from './picToSvg';
 
 class App extends Component {
     constructor (props) {
         super(props);
-        this.state = { input: '', rawSvg: '' };
+        this.state = { input: IN, rawSvg: OUT };
         this.onRenderClick = this.onRenderClick.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
     }
@@ -18,7 +19,6 @@ class App extends Component {
 
     onRenderClick () {
         const s = picToSvg(this.state.input);
-        console.log(s);
         this.setState({rawSvg: s});
     }
 
@@ -29,14 +29,16 @@ class App extends Component {
                   <div className='pane intro-pane' dangerouslySetInnerHTML={{__html:introHtml}}></div>
                   <div className='pane code-pane'>
                       <div className='header'>
-                          <button onClick={this.onRenderClick}>render</button>
+                          <button className='btn-render' onClick={this.onRenderClick}>render</button>
                       </div>
                       <div className='code'>
-                          <textarea spellCheck='false' onChange={this.onInputChange}></textarea>
+                          <textarea spellCheck='false' onChange={this.onInputChange} value={this.state.input}></textarea>
                       </div>
                   </div>
               </SplitPane>
-              <div className='graph' dangerouslySetInnerHTML={{__html:this.state.rawSvg}}></div>
+              <div className='pane graph-pane'>
+                <div className='graph' dangerouslySetInnerHTML={{__html:this.state.rawSvg}}></div>
+              </div>
           </SplitPane>
       );
     }

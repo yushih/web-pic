@@ -26,8 +26,8 @@ class App extends Component {
       return (
           <SplitPane split='vertical' defaultSize={600}>
               <SplitPane split='horizontal' defaultSize={300}>
-                  <div dangerouslySetInnerHTML={{__html:introHtml}}></div>
-                  <div className='code-pane'>
+                  <div className='pane intro-pane' dangerouslySetInnerHTML={{__html:introHtml}}></div>
+                  <div className='pane code-pane'>
                       <div className='header'>
                           <button onClick={this.onRenderClick}>render</button>
                       </div>

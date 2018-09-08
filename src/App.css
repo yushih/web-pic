@@ -48,8 +48,18 @@
     border-color: transparent;
 }
 
+.pane {
+    padding: 1em;
+    overflow: auto;
+}
+
 .code-pane {
-    height: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
     display: flex;
     flex-direction: column;
 }
